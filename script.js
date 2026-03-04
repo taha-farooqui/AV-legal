@@ -6,6 +6,11 @@ const header = document.querySelector('header')
 const navLinks = document.querySelectorAll('nav > a, nav .nav-dropdown > .nav-dropdown-trigger')
 const sections = document.querySelectorAll('section[id]')
 
+const sectionNavMap = {
+  hero: 'contact',
+  clients: 'contact',
+}
+
 function updateActiveNav() {
   const scrollPos = window.scrollY + 200
 
@@ -15,9 +20,10 @@ function updateActiveNav() {
     const sectionId = section.getAttribute('id')
 
     if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+      const targetId = sectionNavMap[sectionId] || sectionId
       navLinks.forEach((link) => {
         link.classList.remove('active')
-        if (link.getAttribute('href') === `#${sectionId}`) {
+        if (link.getAttribute('href') === `#${targetId}`) {
           link.classList.add('active')
         }
       })
@@ -132,58 +138,7 @@ ScrollTrigger.create({
   },
 })
 
-// Infinite Logo Slider
-;(function () {
-  const logoTrack = document.querySelector('.logo-track')
-  if (!logoTrack) return
-
-  const logos = logoTrack.querySelectorAll('img')
-  if (logos.length === 0) return
-
-  // Clone logos to fill the track
-  const cloneLogos = () => {
-    const trackWidth = logoTrack.scrollWidth
-    const viewportWidth = window.innerWidth
-    const clonesNeeded = Math.ceil((viewportWidth * 2) / trackWidth) + 1
-
-    for (let i = 0; i < clonesNeeded; i++) {
-      logos.forEach((logo) => {
-        const clone = logo.cloneNode(true)
-        logoTrack.appendChild(clone)
-      })
-    }
-  }
-
-  cloneLogos()
-
-  // Get the width of one set of logos
-  let logoSetWidth = 0
-  logos.forEach((logo) => {
-    logoSetWidth += logo.offsetWidth + 80 // 80 is the gap
-  })
-
-  let currentX = 0
-  const speed = 1 // pixels per frame
-
-  function animate() {
-    currentX -= speed
-    if (Math.abs(currentX) >= logoSetWidth) {
-      currentX = 0
-    }
-    logoTrack.style.transform = `translateX(${currentX}px)`
-    requestAnimationFrame(animate)
-  }
-
-  // Start animation after images load
-  window.addEventListener('load', () => {
-    // Recalculate logo set width after images are loaded
-    logoSetWidth = 0
-    logos.forEach((logo) => {
-      logoSetWidth += logo.offsetWidth + 80
-    })
-    animate()
-  })
-})()
+// Logo marquee — handled by CSS animation
 
 // Testimonials Swiper
 const testimonialsSwiper = new Swiper('.testimonials-swiper', {

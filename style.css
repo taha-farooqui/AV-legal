@@ -1686,7 +1686,7 @@ div.mobile-nav a.cta-button:hover {
 .image-container {
   display: flex;
   flex-direction: column;
-  background: url('../assets/images/background.webp') no-repeat center center;
+  background: url('./assets/images/background.webp') no-repeat center center;
   background-size: cover;
   padding: 20px;
   border-radius: var(--radius-card);
@@ -1791,7 +1791,7 @@ div.mobile-nav a.cta-button:hover {
   /* Show mobile image containers with background */
   .mobile-image-container {
     display: flex;
-    background: url('../assets/images/background.webp') no-repeat center center;
+    background: url('./assets/images/background.webp') no-repeat center center;
     background-size: cover;
     padding: 40px;
     border-radius: 24px;

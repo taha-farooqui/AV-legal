@@ -183,3 +183,59 @@ const testimonialsSwiper = new Swiper('.testimonials-swiper', {
     })
   })
 })()
+
+// ========== RESULTS TABLE CUSTOM SCROLLBAR ==========
+;(function () {
+  const table = document.querySelector('.results-table')
+  const track = document.querySelector('.results-scrollbar')
+  const thumb = document.querySelector('.results-scrollbar-thumb')
+  if (!table || !track || !thumb) return
+
+  function updateThumb() {
+    const ratio = table.clientWidth / table.scrollWidth
+    const thumbWidth = Math.max(ratio * track.clientWidth, 40)
+    const maxScroll = table.scrollWidth - table.clientWidth
+    const maxThumbLeft = track.clientWidth - thumbWidth
+    const thumbLeft = maxScroll > 0 ? (table.scrollLeft / maxScroll) * maxThumbLeft : 0
+    thumb.style.width = thumbWidth + 'px'
+    thumb.style.left = thumbLeft + 'px'
+  }
+
+  table.addEventListener('scroll', updateThumb)
+  window.addEventListener('resize', updateThumb)
+  updateThumb()
+
+  let isDragging = false
+  let startX = 0
+  let startScrollLeft = 0
+
+  thumb.addEventListener('pointerdown', function (e) {
+    isDragging = true
+    startX = e.clientX
+    startScrollLeft = table.scrollLeft
+    thumb.setPointerCapture(e.pointerId)
+    e.preventDefault()
+  })
+
+  thumb.addEventListener('pointermove', function (e) {
+    if (!isDragging) return
+    const dx = e.clientX - startX
+    const thumbWidth = thumb.offsetWidth
+    const maxThumbLeft = track.clientWidth - thumbWidth
+    const maxScroll = table.scrollWidth - table.clientWidth
+    table.scrollLeft = startScrollLeft + (dx / maxThumbLeft) * maxScroll
+  })
+
+  thumb.addEventListener('pointerup', function () { isDragging = false })
+  thumb.addEventListener('pointercancel', function () { isDragging = false })
+
+  track.addEventListener('click', function (e) {
+    if (e.target === thumb) return
+    const rect = track.getBoundingClientRect()
+    const clickX = e.clientX - rect.left
+    const thumbWidth = thumb.offsetWidth
+    const maxThumbLeft = track.clientWidth - thumbWidth
+    const maxScroll = table.scrollWidth - table.clientWidth
+    table.scrollLeft = ((clickX - thumbWidth / 2) / maxThumbLeft) * maxScroll
+  })
+})()

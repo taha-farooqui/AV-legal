@@ -1342,7 +1342,7 @@ div.mobile-nav a.cta-button:hover {
 .impact-stat-box {
   background: #FFFFFF;
   border-radius: var(--radius-card);
-  padding: 40px 24px;
+  padding: 24px 24px 40px;
   display: flex;
   flex-direction: column;
   gap: 64px;
@@ -2655,7 +2655,7 @@ div.mobile-nav a.cta-button:hover {
   color: #FFFFFF;
   margin-bottom: 40px;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .footer-nav-group ul {

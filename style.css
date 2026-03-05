@@ -749,6 +749,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 /* ========== WHAT WE DO ACCORDION SECTION ========== */
 .what-we-do-section {
   background: var(--bg-color);
+  overflow-anchor: none;
 }
 
 .what-we-do-section .container {
@@ -946,6 +947,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .step-content { order: 2; }
   .step-image { order: 1; }
   .step-item.reverse { direction: ltr; }
+  .step-description{ max-width: unset;}
 }
 @media (max-width: 768px) {
   .steps-container { gap: 56px; }

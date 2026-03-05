@@ -165,6 +165,10 @@ const testimonialsSwiper = new Swiper('.testimonials-swiper', {
     item.addEventListener('click', () => {
       const imageIndex = item.getAttribute('data-image')
 
+      // Lock container height so simultaneous collapse+expand doesn't shift page layout
+      const container = item.closest('.accordion-container')
+      container.style.height = container.offsetHeight + 'px'
+
       // Remove active class from all items
       accordionItems.forEach((otherItem) => {
         otherItem.classList.remove('active')
@@ -180,6 +184,9 @@ const testimonialsSwiper = new Swiper('.testimonials-swiper', {
           image.classList.add('active')
         }
       })
+
+      // Release the height lock after transitions finish (0.3s + small buffer)
+      setTimeout(() => { container.style.height = '' }, 350)
     })
   })
 })()

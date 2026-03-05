@@ -1156,7 +1156,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .platforms-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .platform-card { padding: 28px 20px 24px; min-height: 180px; }
 }
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .platforms-grid { grid-template-columns: 1fr; }
 }
 

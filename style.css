@@ -775,12 +775,15 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 .feature-image-mobile { display: block; width: 100%; border-radius: 0; }
 
 .accordion-item {
+  display: grid;
+  grid-template-rows: auto 0fr;
+  gap: 0px;
   border-top: 2px solid rgba(255, 255, 255, 0.1);
   padding: 32px 0;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: grid-template-rows 0.4s ease, gap 0.4s ease, border-color 0.3s ease;
 }
-.accordion-item.active { border-top-color: var(--accent-orange); display: flex; flex-direction: column; gap: 16px; }
+.accordion-item.active { border-top-color: var(--accent-orange); grid-template-rows: auto 1fr; gap: 16px; }
 .accordion-title { font-size: var(--alpha-body-large); font-weight: var(--font-weight-medium); color: var(--text-white); transition: color 0.3s ease; }
 .accordion-item:not(.active) .accordion-title { color: var(--text-white); }
 .accordion-item:hover .accordion-title { color: var(--text-white); }
@@ -791,12 +794,12 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
   margin: 0;
-  max-height: 0;
+  min-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease, margin-top 0.3s ease;
+  transition: opacity 0.3s ease;
 }
-.accordion-item.active .accordion-description { max-height: 200px; opacity: 1; }
+.accordion-item.active .accordion-description { opacity: 1; }
 
 .image-container {
   display: flex;
@@ -823,10 +826,10 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .what-we-do-grid { grid-template-columns: 1fr; gap: 40px; }
   .section-heading { text-align: left; }
   .feature-pair { display: flex; flex-direction: column; gap: 24px; margin-bottom: 32px; }
-  .accordion-item { cursor: default; pointer-events: none; padding: 24px 0 0 0; border-top-color: var(--accent-orange); }
+  .accordion-item { cursor: default; pointer-events: none; padding: 24px 0 0 0; border-top-color: var(--accent-orange); grid-template-rows: auto 1fr; gap: 12px; }
   .accordion-item .accordion-title { color: var(--text-white); }
   .accordion-item:not(.active) .accordion-title { color: var(--text-white); }
-  .accordion-description { max-height: none; opacity: 1; margin-top: 12px; }
+  .accordion-description { opacity: 1; }
   .mobile-image-container { display: block; border-radius: 24px; overflow: hidden; }
   .image-container { display: none; }
 }

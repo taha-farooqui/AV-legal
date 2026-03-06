@@ -180,6 +180,12 @@ const testimonialsSwiper = new Swiper('.testimonials-swiper', {
 
   if (!accordionItems.length || !featureImages.length) return
 
+  // First item (tallest, 3-line desc) is active on load — lock container to that height
+  const accContainer = accordionItems[0].closest('.accordion-container')
+  if (accContainer) {
+    accContainer.style.minHeight = accContainer.offsetHeight + 'px'
+  }
+
   accordionItems.forEach((item) => {
     item.addEventListener('click', () => {
       const imageIndex = item.getAttribute('data-image')

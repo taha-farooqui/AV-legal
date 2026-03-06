@@ -25,6 +25,7 @@ const sections = document.querySelectorAll('section[id]')
 const sectionNavMap = {
   hero: 'contact',
   clients: 'contact',
+  contact: '',
 }
 
 function updateActiveNav() {
@@ -36,7 +37,7 @@ function updateActiveNav() {
     const sectionId = section.getAttribute('id')
 
     if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-      const targetId = sectionNavMap[sectionId] || sectionId
+      const targetId = sectionNavMap[sectionId] ?? sectionId
       navLinks.forEach((link) => {
         link.classList.remove('active')
         if (link.getAttribute('href') === `#${targetId}`) {

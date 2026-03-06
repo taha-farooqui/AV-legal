@@ -1107,7 +1107,10 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .cta-action-button::before { width: 12px; height: 12px; }
 }
 @media (max-width: 480px) {
-  .cta-content { padding: 40px 20px; }
+  .cta-content { padding: 40px 8px; }
+  .cta-action-button { padding: 16px; }
+  .cta-action-button::before { left: 28px; }
+  .cta-action-button .button-text{margin-left: 34px;}
 }
 
 /* ========== PLATFORMS SECTION ========== */

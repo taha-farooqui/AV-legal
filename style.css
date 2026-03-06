@@ -626,7 +626,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 }
 
 .trusted-title {
-  font-size: var(--alpha-heading-h1);
+  font-size: var(--alpha-heading-h2);
   font-weight: var(--font-weight-medium);
   color: var(--bg-color);
   text-align: center;

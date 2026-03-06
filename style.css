@@ -605,7 +605,8 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .h0 br { display: none; }
   .hero-description br { display: none; }
   .hero-buttons { flex-direction: column; align-items: center; gap: 12px; }
-  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .btn-primary { width: 100%; justify-content: center; }
+  .hero-buttons .btn-secondary { width: 100%; justify-content: center; }
   .btn-primary svg { width: 16px; height: 16px; }
 }
 
@@ -902,6 +903,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .testimonial-right { padding-top: 40px; }
   .testimonial-navigation { display: none; }
   .swiper-pagination { margin-top: 40px; }
+  .swiper-pagination-bullet{height: 10px; width: 10px;}
 }
 @media (max-width: 1023px) {
   .testimonial-text { font-size: var(--alpha-body-large); }
@@ -913,6 +915,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .testimonial-right { padding: 40px 0; gap: 24px;}
   .swiper-pagination-bullet{ width: 8px; height: 8px; margin: 0 4px !important;}
   .quote-icon { width: 66px; height: 48px; left: 0; top: 20px; }
+  .swiper-pagination{margin-top: 0;}
 }
 
 /* ========== HOW IT WORKS SECTION ========== */
@@ -1000,7 +1003,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   top: 0;
   left: 0;
   height: 100%;
-  background: var(--accent-orange);
+  background: var(--text-gray);
   border-radius: 9999px;
   cursor: grab;
   transition: background 0.2s ease;
@@ -1056,7 +1059,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   position: relative;
   border-radius: var(--radius-card);
   overflow: hidden;
-  min-height: 100vh;
+  min-height: 91dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1104,7 +1107,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 .cta-footnote { font-size: var(--alpha-body-medium); color: var(--text-white); font-weight: var(--font-weight-medium); margin: 0; margin-top: 40px; }
 
 @media (max-width: 768px) {
-  .cta-card { min-height: unset; height: 70vh; }
+  .cta-card { height: 88svh; min-height: unset; }
   .cta-content { padding: 60px 24px; gap: 20px; }
   .cta-action-button { padding: 18.5px 35px; }
   .cta-action-button::before { width: 12px; height: 12px; }
@@ -1160,10 +1163,12 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 }
 @media (max-width: 1024px) {
   .platforms-grid { grid-template-columns: repeat(2, 1fr); }
+  .platforms-section .container {gap: 60px;}
 }
 @media (max-width: 768px) {
   .platforms-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .platform-card { padding: 28px 20px 24px; min-height: 180px; }
+  .platforms-section .container{ gap: 30px;}
 }
 @media (max-width: 600px) {
   .platforms-grid { grid-template-columns: 1fr; }
@@ -1208,9 +1213,12 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 @media (max-width: 768px) {
   .no-savings-features { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .no-savings-section .container{ gap: 60px;}
+  .security-feature{padding: 20px;}
 }
 @media (max-width: 480px) {
-  .no-savings-features { grid-template-columns: 1fr; }
+  .security-feature{padding: 20px 0;}
+  .security-feature img{width: 110px;}
+  .security-feature-label{padding-top: 20px;}
 }
 
 /* ========== CONSULTATION PAGE ========== */
@@ -1476,7 +1484,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .testimonials-section      { padding: 60px 20px; }
   .how-it-works-section      { padding: 60px 20px; }
   .results-section           { padding: 60px 20px; }
-  .cta-section               { padding: 80px 20px; }
+  .cta-section               { padding: 60px 20px; }
   .platforms-section         { padding: 60px 20px; }
   .no-savings-section        { padding: 0 20px 60px; }
   .footer                    { padding: 40px 20px 30px; }

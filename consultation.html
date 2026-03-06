@@ -243,6 +243,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="script.js?v7"></script>
 <script>
+// ========== CONSULTATION SECTION PADDING ==========
+;(function () {
+  const nav = document.querySelector('header')
+  const section = document.querySelector('.consultation-section')
+  if (!nav || !section) return
+
+  function applyPadding() {
+    const navH = nav.getBoundingClientRect().height
+    const w = window.innerWidth
+    const base = w <= 768 ? 80 : w <= 1024 ? 100 : 150
+    section.style.paddingTop = (base + navH) + 'px'
+  }
+
+  applyPadding()
+  window.addEventListener('resize', applyPadding)
+})()
+</script>
+<script>
 // Custom Select Dropdowns
 document.querySelectorAll('.custom-select').forEach(select => {
   const trigger = select.querySelector('.custom-select-trigger');

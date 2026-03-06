@@ -2,6 +2,22 @@ gsap.registerPlugin(ScrollTrigger)
 
 const header = document.querySelector('header')
 
+// ========== HERO PADDING ==========
+;(function () {
+  const hero = document.querySelector('.hero')
+  if (!hero || !header) return
+
+  function applyHeroPadding() {
+    const navH = header.getBoundingClientRect().height
+    const w = window.innerWidth
+    const base = w <= 768 ? 60 : w <= 1024 ? 80 : 130
+    hero.style.paddingTop = (base + navH) + 'px'
+  }
+
+  applyHeroPadding()
+  window.addEventListener('resize', applyHeroPadding)
+})()
+
 // Active Nav State on Scroll
 const navLinks = document.querySelectorAll('nav > a, nav .nav-dropdown > .nav-dropdown-trigger')
 const sections = document.querySelectorAll('section[id]')
@@ -75,6 +91,8 @@ const whiteSections = [
   document.querySelector(".impact-stats-section"),
   document.querySelector(".trusted-by"),
   document.querySelector(".implementation-section"),
+  document.querySelector(".results-section"),
+  document.querySelector(".how-it-works-section"),
   document.querySelector(".case-studies-section"),
   document.querySelector(".contact-section"),
   document.querySelector(".footer"),
@@ -165,9 +183,9 @@ const testimonialsSwiper = new Swiper('.testimonials-swiper', {
     item.addEventListener('click', () => {
       const imageIndex = item.getAttribute('data-image')
 
-      // Lock container height so simultaneous collapse+expand doesn't shift page layout
-      const container = item.closest('.accordion-container')
-      container.style.height = container.offsetHeight + 'px'
+      // Disable scroll anchoring so the browser doesn't shift the page
+      // while the description expand/collapse transition runs
+      document.documentElement.style.overflowAnchor = 'none'
 
       // Remove active class from all items
       accordionItems.forEach((otherItem) => {
@@ -185,8 +203,10 @@ const testimonialsSwiper = new Swiper('.testimonials-swiper', {
         }
       })
 
-      // Release the height lock after transitions finish (0.3s + small buffer)
-      setTimeout(() => { container.style.height = '' }, 350)
+      // Re-enable scroll anchoring after transitions finish
+      setTimeout(() => {
+        document.documentElement.style.overflowAnchor = ''
+      }, 350)
     })
   })
 })()
@@ -246,3 +266,5 @@ const testimonialsSwiper = new Swiper('.testimonials-swiper', {
     table.scrollLeft = ((clickX - thumbWidth / 2) / maxThumbLeft) * maxScroll
   })
 })()
+
+

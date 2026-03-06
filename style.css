@@ -1280,7 +1280,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 .chip-label:hover { border-color: var(--bg-color); }
 .chip input:checked + .chip-label { background: var(--accent-orange); color: var(--text-white); border-color: var(--accent-orange); }
 
-.consultation-submit { display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-size: var(--alpha-body-large); font-weight: var(--font-weight-bold); color: var(--text-white); background: var(--bg-color); border: none; border-radius: 100px; padding: 24px 48px; cursor: pointer; transition: background 0.3s ease; width: 100%; margin-top: 16px; }
+.consultation-submit { display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-family: inherit; font-size: var(--alpha-body-large); font-weight: var(--font-weight-bold); color: var(--text-white); background: var(--bg-color); border: none; border-radius: 100px; padding: 24px 48px; cursor: pointer; transition: background 0.3s ease; width: 100%; margin-top: 16px; }
 .consultation-submit:hover { background: var(--accent-orange); }
 .consultation-submit svg { width: 29px; height: 29px; }
 

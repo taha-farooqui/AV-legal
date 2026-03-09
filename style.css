@@ -646,10 +646,10 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   width: max-content;
   animation: marquee 30s linear infinite;
 }
-.logo-track img { height: 64px; width: auto; max-width: 220px; object-fit: contain; flex-shrink: 0; margin-right: 120px; filter: grayscale(100%); }
+.logo-track img { height: 80px; width: auto; max-width: 220px; object-fit: contain; flex-shrink: 0; margin-right: 120px; filter: grayscale(100%); }
 
 @media (max-width: 1024px) {
-  .logo-track img { height: 50px; margin-right: 60px; }
+  .logo-track img { height: 60px; margin-right: 60px; }
 }
 @media (max-width: 768px) {
   .logo-track img { height: 40px; margin-right: 40px; }

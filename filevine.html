@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filevine - Alphaventure</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+
+
+    <link rel="preload" as="image" href="./assets/images/filevine/tabbed-section-filevine1.png">
+    <link rel="preload" as="image" href="./assets/images/filevine/tabbed-section-filevine2.png">
+    <link rel="preload" as="image" href="./assets/images/filevine/tabbed-section-filevine3.png">
+    <link rel="preload" as="image" href="./assets/images/filevine/tabbed-section-filevine4.png">
+    <link rel="preload" as="image" href="./assets/images/filevine/tabbed-section-filevine5.png">
+
+    <style>
+        .hero-description{
+            max-width: 826px;
+        }
+        .trusted-filevine{
+  font-size: var(--alpha-heading-h1);
+  max-width: 762px;
+  margin: 0 auto;
+  line-height: 83px;
+}
+.filevine-impact-grid{
+  margin-top: 0 !important;
+}
+
+        .implementation-grid .impact-stat-box{
+            gap: 40px;
+        }
+        .impact-box-number{
+            font-size: var(--alpha-heading-h3);
+            color: var(--accent-orange);
+            font-weight: var(--font-weight-bold);
+        }
+        .section-heading{
+            width: unset;
+        }
+        .results-subtitle{
+            max-width: 453px;
+            margin: 0 auto;
+        }
+        .second-description{
+            text-align: center;
+        }
+        .second-description p{
+            font-size: var(--alpha-body-small);
+            color: var(--text-gray);
+        }
+        .results-table-header, .results-table-row {
+            grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr 1fr !important;
+            gap: 16px;
+        }
+        .results-table-header .highlight-col {
+            color: var(--accent-orange);
+        }
+        .results-table-header span:last-child {
+            padding-left: 0 !important;
+        }
+        .change-name, .before-value, .after-value{
+            font-size: var(--alpha-body-small);
+        }
+        .after-value{
+            padding-left: 0;
+        }
+        @media (max-width: 1024px) {
+            .results-table { overflow-x: scroll; scrollbar-width: none; -ms-overflow-style: none; }
+            .results-table::-webkit-scrollbar { display: none; }
+            .results-table-header, .results-table-row { min-width: 1250px; white-space: nowrap; }
+            .results-scrollbar {
+                display: block;
+                width: 100%;
+                height: 8px;
+                border-radius: 9999px;
+                position: relative;
+                padding: 2px 0;
+                cursor: pointer;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .cta-section{
+            background-color: #f2f2f2;
+            padding: 0 32px 32px;
+        }
+    </style>
+</head>
+
+<body>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
+  <symbol id="icon-x" viewBox="0 0 14 16">
+    <path d="M1.83998 15.9402C1.73331 15.9402 1.66665 15.9202 1.63998 15.8802L1.27998 15.4002C1.33331 15.2402 1.35998 15.1202 1.35998 15.0402C1.35998 14.9869 1.34665 14.9602 1.31998 14.9602C1.23998 14.9602 1.15998 14.9935 1.07998 15.0602C0.986647 15.1269 0.893314 15.1602 0.799981 15.1602C0.746647 15.1469 0.719981 15.1135 0.719981 15.0602L0.75998 14.8002C0.75998 14.7735 0.746647 14.7602 0.719981 14.7602L0.59998 14.8002L0.439981 14.8402C0.413314 14.8135 0.399981 14.7869 0.399981 14.7602L0.439981 14.4402C0.439981 14.3602 0.419981 14.2735 0.37998 14.1802C0.33998 14.0869 0.306647 14.0402 0.279981 14.0402L-1.94758e-05 13.9202C0.0399805 13.8402 0.0799805 13.7535 0.119981 13.6602C0.159981 13.5802 0.186647 13.4935 0.199981 13.4002C0.199981 13.3335 0.186647 13.2402 0.159981 13.1202C0.146647 13.0002 0.106647 12.8535 0.0399805 12.6802C0.239981 12.2535 0.633314 11.6802 1.21998 10.9602C1.80665 10.2402 2.59998 9.34686 3.59998 8.2802C2.91998 6.8802 2.23998 5.28019 1.55998 3.48019L1.45998 3.3602C1.41998 3.30686 1.37331 3.20686 1.31998 3.06019C1.26665 2.90019 1.21998 2.74686 1.17998 2.60019C1.13998 2.44019 1.11998 2.34019 1.11998 2.30019C1.11998 2.26019 1.13331 2.24019 1.15998 2.24019C1.23998 2.24019 1.33331 2.20019 1.43998 2.12019C1.55998 2.02686 1.62665 1.94019 1.63998 1.86019C1.66665 1.79353 1.72665 1.70686 1.81998 1.60019C1.92665 1.49353 1.99998 1.4402 2.03998 1.4402C2.05331 1.4402 2.11331 1.47353 2.21998 1.5402C2.25998 1.55353 2.29331 1.57353 2.31998 1.60019C2.35998 1.61353 2.39998 1.62019 2.43998 1.62019L2.51998 1.60019C2.63998 1.54686 2.71998 1.37353 2.75998 1.0802C2.83998 1.18686 2.91331 1.24019 2.97998 1.24019L3.03998 1.20019C3.09331 1.1202 3.12665 1.05353 3.13998 1.0002C3.17998 0.933528 3.21998 0.900195 3.25998 0.900195L3.31998 0.920195C3.39998 1.00019 3.54665 1.18019 3.75998 1.4602C3.97331 1.74019 4.19998 2.05353 4.43998 2.40019C4.69331 2.74686 4.89331 3.05353 5.03998 3.32019C5.15998 3.53353 5.32665 3.80686 5.53998 4.1402C5.75331 4.46019 6.01331 4.84019 6.31998 5.28019C7.15998 4.34686 7.83331 3.61353 8.33998 3.08019C8.84665 2.53353 9.18665 2.18686 9.35998 2.04019C9.53331 1.89353 9.69331 1.74686 9.83998 1.60019C9.98665 1.45353 10.1266 1.31353 10.26 1.1802C10.5133 0.900195 10.72 0.693528 10.88 0.560195L11.6 0.000194788L11.66 0.0201945C11.86 0.153528 11.9733 0.273528 12 0.380195L12.04 0.520195L12.32 0.680194L12.28 0.900195C12.28 0.953529 12.3133 1.0602 12.38 1.22019C12.4466 1.36686 12.5066 1.45353 12.56 1.48019C12.6266 1.48019 12.6866 1.46019 12.74 1.42019C12.8066 1.38019 12.9 1.3602 13.02 1.3602H13.12L13.04 1.68019L13.24 1.7202L13.28 2.06019C13.28 2.23353 13.2 2.37353 13.04 2.4802L13.2 2.72019L11 4.86019C10.6933 5.16686 10.3 5.58019 9.81998 6.10019C9.35331 6.60686 8.81331 7.22686 8.19998 7.96019C8.98665 9.01353 9.60665 9.8402 10.06 10.4402C10.5266 11.0269 10.8266 11.3935 10.96 11.5402C11.2266 11.8335 11.36 12.0402 11.36 12.1602C11.36 12.2669 11.32 12.4135 11.24 12.6002C11.1733 12.7869 11.0933 12.9535 11 13.1002C10.9066 13.2469 10.8266 13.3202 10.76 13.3202L10.16 13.3602L10.32 13.9202L10.24 13.9802C10.16 14.0202 10.1 14.0402 10.06 14.0402H9.95998C9.83998 14.0402 9.75998 14.1069 9.71998 14.2402C9.66665 14.3869 9.56665 14.4602 9.41998 14.4602C9.33998 14.4602 9.26665 14.4269 9.19998 14.3602C9.13331 14.2935 9.03331 14.2602 8.89998 14.2602C8.83331 14.2602 8.78665 14.2802 8.75998 14.3202L8.69998 14.4602C8.68665 14.5535 8.66665 14.6335 8.63998 14.7002C8.62665 14.7669 8.61331 14.8135 8.59998 14.8402C8.57331 14.9069 8.51998 14.9402 8.43998 14.9402H8.37998C8.32665 14.9402 8.25998 14.9269 8.17998 14.9002C8.11331 14.8735 8.02665 14.8402 7.91998 14.8002C7.49331 14.3469 6.66665 13.2002 5.43998 11.3602L4.49998 12.5602C4.04665 13.1335 3.69331 13.5869 3.43998 13.9202C3.19998 14.2669 3.05331 14.4802 2.99998 14.5602L2.79998 14.9202C2.42665 15.5869 2.21331 15.9202 2.15998 15.9202L1.83998 15.9402Z" fill="#858585"/>
+  </symbol>
+</svg>
+
+
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="container">
+    <div class="container-wrap">
+      <a href="index.html" class="logo">
+        <img src="./assets/images/logo-white.png" alt="AlphaVenture" />
+      </a>
+      <nav>
+        <a href="index.html#contact">About</a>
+        <a href="#work">What we do</a>
+        <div class="nav-dropdown">
+          <a href="index.html#platforms" class="nav-dropdown-trigger">Platforms
+            <svg class="chevron-icon" width="18" height="8" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.9238 1.92476L9.42383 9.42476C9.31931 9.52964 9.19512 9.61286 9.05837 9.66964C8.92163 9.72642 8.77502 9.75565 8.62695 9.75565C8.47889 9.75565 8.33228 9.72642 8.19553 9.66964C8.05878 9.61286 7.93459 9.52964 7.83008 9.42476L0.330077 1.92476C0.118732 1.71342 -3.14928e-09 1.42677 0 1.12789C3.14928e-09 0.829003 0.118732 0.542358 0.330077 0.331014C0.541421 0.11967 0.828065 0.000937703 1.12695 0.0009377C1.42584 0.000937697 1.71248 0.11967 1.92383 0.331014L8.62789 7.03508L15.332 0.330077C15.5433 0.118733 15.8299 0 16.1288 0C16.4277 0 16.7144 0.118733 16.9257 0.330077C17.137 0.541421 17.2558 0.828066 17.2558 1.12695C17.2558 1.42584 17.137 1.71248 16.9257 1.92383L16.9238 1.92476Z" fill="currentColor"/>
+            </svg>
+          </a>
+          <div class="nav-dropdown-menu">
+            <a href="filevine.html">Filevine</a>
+            <a href="Clio.html">Clio</a>
+            <a href="index.html#platforms">Docketwise</a>
+            <a href="index.html#platforms">MyCase</a>
+          </div>
+        </div>
+        <a href="#results">Results</a>
+        <a href="#how-it-works">How it works</a>
+      </nav>
+      <div class="header-right">
+        <a href="consultation.html" class="cta-button">Let's Talk</a>
+        <button class="mobile-menu-btn" aria-label="Menu" id="menuBtn">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile Canvas Header -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#how-it-works">How it works</a>
+    <a href="#work">What we do</a>
+    <div class="mobile-nav-dropdown">
+      <button class="mobile-nav-dropdown-trigger">
+        Platforms
+        <svg class="mobile-chevron" width="14" height="8" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16.9238 1.92476L9.42383 9.42476C9.31931 9.52964 9.19512 9.61286 9.05837 9.66964C8.92163 9.72642 8.77502 9.75565 8.62695 9.75565C8.47889 9.75565 8.33228 9.72642 8.19553 9.66964C8.05878 9.61286 7.93459 9.52964 7.83008 9.42476L0.330077 1.92476C0.118732 1.71342 -3.14928e-09 1.42677 0 1.12789C3.14928e-09 0.829003 0.118732 0.542358 0.330077 0.331014C0.541421 0.11967 0.828065 0.000937703 1.12695 0.0009377C1.42584 0.000937697 1.71248 0.11967 1.92383 0.331014L8.62789 7.03508L15.332 0.330077C15.5433 0.118733 15.8299 0 16.1288 0C16.4277 0 16.7144 0.118733 16.9257 0.330077C17.137 0.541421 17.2558 0.828066 17.2558 1.12695C17.2558 1.42584 17.137 1.71248 16.9257 1.92383L16.9238 1.92476Z" fill="currentColor"/>
+        </svg>
+      </button>
+      <div class="mobile-nav-submenu">
+        <a href="filevine.html">Filevine</a>
+        <a href="Clio.html">Clio</a>
+        <a href="index.html#platforms">Docketwise</a>
+        <a href="index.html#platforms">MyCase</a>
+      </div>
+    </div>
+    <a href="#results">Results</a>
+    <a href="index.html#contact">About</a>
+  </div>
+</header>
+
+<!-- ========== HERO SECTION ========== -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="hero-tag">Filevine Implementation Partner</span>
+      <h1 class="hero-heading">Get More From Filevine.</h1>
+      <p class="hero-description">We configure, automate, and optimize Filevine—without you hiring an ops team. Clean setup, working workflows, and a team that actually uses it.</p>
+      <div class="hero-buttons">
+        <a href="consultation.html" class="btn-primary">Book A Free Consultation <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M24.5613 11.5664L15.5613 20.5664C15.2795 20.8481 14.8973 21.0065 14.4988 21.0065C14.1002 21.0065 13.718 20.8481 13.4363 20.5664C13.1545 20.2846 12.9961 19.9024 12.9961 19.5039C12.9961 19.1053 13.1545 18.7231 13.4363 18.4414L19.875 12.0051H1.5C1.10218 12.0051 0.720644 11.8471 0.43934 11.5658C0.158035 11.2845 0 10.9029 0 10.5051C0 10.1073 0.158035 9.72575 0.43934 9.44444C0.720644 9.16314 1.10218 9.0051 1.5 9.0051H19.875L13.4387 2.5651C13.157 2.28331 12.9986 1.90112 12.9986 1.5026C12.9986 1.10409 13.157 0.721894 13.4387 0.440102C13.7205 0.158309 14.1027 4.19903e-09 14.5012 0C14.8998 -4.19904e-09 15.282 0.158309 15.5637 0.440102L24.5637 9.4401C24.7036 9.57964 24.8145 9.74544 24.8901 9.92797C24.9657 10.1105 25.0045 10.3062 25.0043 10.5037C25.0041 10.7013 24.9648 10.8969 24.8888 11.0792C24.8127 11.2616 24.7014 11.4271 24.5613 11.5664Z" fill="currentColor"/></svg></a>
+        <a href="#how-it-works" class="btn-secondary">See What We Fix</a>
+      </div>
+      <p class="hero-billing">Building for law firms across the U.S. and Canada</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========== TRUSTED BY SECTION ========== -->
+<section class="trusted-by" id="clients">
+    <h2 class="trusted-title trusted-filevine">Most Firms Use a Fraction of What Filevine Can Do</h2>
+   <div class="container">
+
+    <div class="implementation-grid">
+      <div class="impact-stat-box">
+        <div class="impact-box-number">01</div>
+        <div class="stat-content">
+          <h3 class="stat-value">Your setup never got finished.</h3>
+          <p class="stat-text">Phases half-built. Sections inconsistent. DocGen templates missing. People work around Filevine instead of inside it.</p>
+        </div>
+      </div>
+      <div class="impact-stat-box">
+                <div class="impact-box-number">02</div>
+
+        <div class="stat-content">
+          <h3 class="stat-value">Paying for power you’re not using.</h3>
+          <p class="stat-text">Filevine has workflow rules, task automation, and conditional logic built in. Most firms never turn them on.</p>
+        </div>
+      </div>
+      <div class="impact-stat-box">
+                <div class="impact-box-number">03</div>
+
+        <div class="stat-content">
+          <h3 class="stat-value">There’s no one to call.</h3>
+          <p class="stat-text">Filevine support helps you find buttons. We build the system behind them.</p>
+        </div>
+      </div>
+    </div>
+</div>
+</section>
+
+
+
+<!-- ========== WHAT WE DO ACCORDION SECTION ========== -->
+<section class="what-we-do-section" id="work">
+  <div class="container">
+    <!-- Section Heading -->
+     <div class="heading-container">
+    <h2 class="section-heading">What We Build Inside Your Filevine</h2>
+     </div>
+
+    <!-- Accordion and Images Grid -->
+    <div class="what-we-do-grid">
+      <!-- Left Side - Accordion -->
+      <div class="accordion-container">
+        <div class="feature-pair">
+          <div class="accordion-item active" data-image="0">
+            <h3 class="accordion-title">Matter Types & Phases</h3>
+            <p class="accordion-description">Every field, phase, section, and template built for your practice area. Cases run the way your firm actually works.</p>
+          </div>
+          <div class="mobile-image-container">
+            <img src="./assets/images/filevine/tabbed-section-filevine1.png" alt="Full Platform Setup" class="feature-image-mobile">
+          </div>
+        </div>
+
+        <div class="feature-pair">
+          <div class="accordion-item" data-image="1">
+            <h3 class="accordion-title">Workflow Rules & Automation</h3>
+            <p class="accordion-description">Automated task sequences, deadline tracking, and approval chains tailored to your firm's processes.</p>
+          </div>
+          <div class="mobile-image-container">
+            <img src="./assets/images/filevine/tabbed-section-filevine2.png" alt="Custom Workflows" class="feature-image-mobile">
+          </div>
+        </div>
+
+        <div class="feature-pair">
+          <div class="accordion-item" data-image="2">
+            <h3 class="accordion-title">AI Document Processing</h3>
+            <p class="accordion-description">Smart document generation, intelligent routing, and automated data extraction powered by AI.</p>
+          </div>
+          <div class="mobile-image-container">
+            <img src="./assets/images/filevine/tabbed-section-filevine3.png" alt="AI Automation" class="feature-image-mobile">
+          </div>
+        </div>
+
+        <div class="feature-pair">
+          <div class="accordion-item" data-image="3">
+            <h3 class="accordion-title">Integrations & Portals</h3>
+            <p class="accordion-description">Seamless integrations with your existing tools—email, calendar, accounting, and document management.</p>
+          </div>
+          <div class="mobile-image-container">
+            <img src="./assets/images/filevine/tabbed-section-filevine4.png" alt="Connected Systems" class="feature-image-mobile">
+          </div>
+        </div>
+
+        <div class="feature-pair">
+          <div class="accordion-item" data-image="4">
+            <h3 class="accordion-title">Training & Optimization</h3>
+            <p class="accordion-description">Hands-on training for your team and ongoing optimization to ensure maximum adoption and ROI.</p>
+          </div>
+          <div class="mobile-image-container">
+            <img src="./assets/images/filevine/tabbed-section-filevine5.png" alt="Training & Optimization" class="feature-image-mobile">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side - Images -->
+      <div class="image-container">
+        <div class="image-wrapper">
+          <img src="./assets/images/filevine/tabbed-section-filevine1.png" alt="Full Platform Setup" class="feature-image active" data-index="0">
+          <img src="./assets/images/filevine/tabbed-section-filevine2.png" alt="Custom Workflows" class="feature-image" data-index="1">
+          <img src="./assets/images/filevine/tabbed-section-filevine3.png" alt="AI Automation" class="feature-image" data-index="2">
+          <img src="./assets/images/filevine/tabbed-section-filevine4.png" alt="Connected Systems" class="feature-image" data-index="3">
+          <img src="./assets/images/filevine/tabbed-section-filevine5.png" alt="Training & Optimization" class="feature-image" data-index="4">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========== HOW IT WORKS SECTION ========== -->
+<section class="how-it-works-section" id="how-it-works">
+  <div class="container">
+    <div class="how-it-works-header">
+      <h2 class="how-it-works-title">How It Works</h2>
+      <p class="how-it-works-subtitle">Four steps. Zero risk. You pay only when you're saving.</p>
+    </div>
+
+    <div class="steps-container">
+      <!-- Step 1 -->
+      <div class="step-item">
+        <div class="step-content">
+          <h3 class="step-title">Free Consultation</h3>
+          <p class="step-description">We review your Filevine and identify where time is being lost.</p>
+          <span class="step-badge">You pay: $0</span>
+        </div>
+        <div class="step-image">
+          <img src="./assets/images/filevine/step1.png" alt="Free Consultation">
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step-item reverse">
+        <div class="step-image">
+          <img src="./assets/images/filevine/step2.png" alt="Workflow Audit">
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">Workflow Audit</h3>
+          <p class="step-description">You get a detailed plan: what we'll fix, what we'll build, and the expected impact.</p>
+          <span class="step-badge">You pay: $0</span>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step-item">
+        <div class="step-content">
+          <h3 class="step-title">Implementation Sprint</h3>
+          <p class="step-description">We build, configure, automate, and train your team. Live in 2–3 weeks.</p>
+          <span class="step-badge">$0 upfront</span>
+        </div>
+        <div class="step-image">
+          <img src="./assets/images/filevine/step3.png" alt="Implementation Sprint">
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step-item reverse">
+        <div class="step-image">
+          <img src="./assets/images/filevine/step4.png" alt="You Save. We Earn.">
+        </div>
+        <div class="step-content">
+          <h3 class="step-title">You Save. We Earn.</h3>
+          <p class="step-description">We earn a share of efficiency gains. No savings, no fee.</p>
+          <span class="step-badge">Pay from savings</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========== TESTIMONIALS SECTION ========== -->
+<section class="testimonials-section">
+  <div class="container">
+    <!-- Navigation Buttons -->
+    <div class="testimonial-navigation">
+      <button class="testimonial-prev">
+        <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.438744 11.5664L9.43874 20.5664C9.72054 20.8481 10.1027 21.0065 10.5012 21.0065C10.8998 21.0065 11.282 20.8481 11.5637 20.5664C11.8455 20.2846 12.0039 19.9024 12.0039 19.5039C12.0039 19.1053 11.8455 18.7231 11.5637 18.4414L5.12501 12.0051H23.5C23.8978 12.0051 24.2794 11.8471 24.5607 11.5658C24.842 11.2845 25 10.9029 25 10.5051C25 10.1073 24.842 9.72575 24.5607 9.44444C24.2794 9.16314 23.8978 9.0051 23.5 9.0051H5.12501L11.5613 2.5651C11.843 2.28331 12.0014 1.90112 12.0014 1.5026C12.0014 1.10409 11.843 0.721894 11.5613 0.440102C11.2795 0.158309 10.8973 4.19903e-09 10.4988 0C10.1002 -4.19904e-09 9.71804 0.158309 9.43625 0.440102L0.436247 9.4401C0.296439 9.57964 0.185454 9.74544 0.109895 9.92797C0.0343366 10.1105 -0.00449952 10.3062 -0.00428772 10.5037C-0.00407593 10.7013 0.0351892 10.8969 0.11124 11.0792C0.187291 11.2616 0.298606 11.4271 0.438744 11.5664Z" fill="currentColor"/>
+        </svg>
+      </button>
+      <button class="testimonial-next">
+        <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24.5613 11.5664L15.5613 20.5664C15.2795 20.8481 14.8973 21.0065 14.4988 21.0065C14.1002 21.0065 13.718 20.8481 13.4363 20.5664C13.1545 20.2846 12.9961 19.9024 12.9961 19.5039C12.9961 19.1053 13.1545 18.7231 13.4363 18.4414L19.875 12.0051H1.5C1.10218 12.0051 0.720644 11.8471 0.43934 11.5658C0.158035 11.2845 0 10.9029 0 10.5051C0 10.1073 0.158035 9.72575 0.43934 9.44444C0.720644 9.16314 1.10218 9.0051 1.5 9.0051H19.875L13.4387 2.5651C13.157 2.28331 12.9986 1.90112 12.9986 1.5026C12.9986 1.10409 13.157 0.721894 13.4387 0.440102C13.7205 0.158309 14.1027 4.19903e-09 14.5012 0C14.8998 -4.19904e-09 15.282 0.158309 15.5637 0.440102L24.5637 9.4401C24.7036 9.57964 24.8145 9.74544 24.8901 9.92797C24.9657 10.1105 25.0045 10.3062 25.0043 10.5037C25.0041 10.7013 24.9648 10.8969 24.8888 11.0792C24.8127 11.2616 24.7014 11.4271 24.5613 11.5664Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Swiper Container -->
+    <div class="testimonials-swiper swiper">
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide">
+          <div class="testimonial-content">
+            <div class="testimonial-left">
+              <img src="./assets/images/review2.png" alt="Client Testimonial" class="testimonial-image">
+            </div>
+            <div class="testimonial-right">
+              <svg class="quote-icon" width="186" height="135" viewBox="0 0 186 135" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M81.6714 95.6031C81.6714 118.716 65.864 135 42.6799 135C17.915 135 0 115.039 0 83.5214C0 39.3969 29.5071 5.25294 71.6601 0V25.214C49.0028 29.4164 33.1955 43.5992 33.1955 61.9844C37.4108 60.4086 42.153 59.358 47.949 59.358C66.9179 59.358 81.6714 73.0156 81.6714 95.6031ZM186 95.6031C186 118.716 170.193 135 147.009 135C122.244 135 104.329 115.039 104.329 83.5214C104.329 39.3969 133.836 5.25294 175.989 0V25.214C153.331 29.4164 136.997 43.5992 136.997 62.5097C141.212 60.4086 145.955 59.358 151.751 59.358C170.72 59.358 186 73.0156 186 95.6031Z" fill="white" fill-opacity="0.08"/>
+              </svg>
+              <p class="testimonial-text">Notice processing went from 45 minutes to under 3. The time savings justified everything in <span class="highlight">week one.</span> Our paralegals generate demand letters in minutes now. We've taken on more cases without adding staff.</p>
+              <div class="testimonial-author">
+                <p class="author-name">Immigration Attorney</p>
+                <p class="author-title">Managing Partner</p>
+                <p class="author-company">Immigration Firm XYZ</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="swiper-slide">
+          <div class="testimonial-content">
+            <div class="testimonial-left">
+              <img src="./assets/images/review-left.png" alt="Client Testimonial" class="testimonial-image">
+            </div>
+            <div class="testimonial-right">
+              <svg class="quote-icon" width="186" height="135" viewBox="0 0 186 135" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M81.6714 95.6031C81.6714 118.716 65.864 135 42.6799 135C17.915 135 0 115.039 0 83.5214C0 39.3969 29.5071 5.25294 71.6601 0V25.214C49.0028 29.4164 33.1955 43.5992 33.1955 61.9844C37.4108 60.4086 42.153 59.358 47.949 59.358C66.9179 59.358 81.6714 73.0156 81.6714 95.6031ZM186 95.6031C186 118.716 170.193 135 147.009 135C122.244 135 104.329 115.039 104.329 83.5214C104.329 39.3969 133.836 5.25294 175.989 0V25.214C153.331 29.4164 136.997 43.5992 136.997 62.5097C141.212 60.4086 145.955 59.358 151.751 59.358C170.72 59.358 186 73.0156 186 95.6031Z" fill="white" fill-opacity="0.08"/>
+              </svg>
+              <p class="testimonial-text">The automation has been incredible. Document processing is instant, and our team can focus on actual legal work instead of data entry. <span class="highlight">Best decision</span> we made for our firm this year.</p>
+              <div class="testimonial-author">
+                <p class="author-name">Corporate Attorney</p>
+                <p class="author-title">Senior Partner</p>
+                <p class="author-company">Business Law Group</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========== RESULTS SECTION ========== -->
+<section class="results-section" id="results">
+  <div class="container">
+    <div class="results-header">
+      <h2 class="results-title">Why Firms Choose Us</h2>
+      <p class="results-subtitle">See how we compare to doing it yourself, Filevine support, and other consultants.</p>
+    </div>
+
+    <div class="second-description">
+        <p>Based on average client results within 30 days of go-live.</p>
+    </div>
+    <div class="results-table-wrap">
+      <div class="results-table">
+        <div class="results-table-header">
+          <span></span>
+          <span>DIY</span>
+          <span>FILEVINE SUPPORT</span>
+          <span>OTHER CONSULTANTS</span>
+          <span class="highlight-col">ALPHAVENTURE</span>
+        </div>
+        <div class="results-table-row">
+          <span class="change-name">Full platform setup</span>
+          <span class="before-value"><svg class="icon-x" width="14" height="16"><use href="#icon-x"/></svg> You figure it out</span>
+          <span class="before-value">Guided, not done-for-you</span>
+          <span class="before-value">Takes 3—6 months</span>
+          <span class="after-value">✓ Done in 2—3 weeks</span>
+        </div>
+        <div class="results-table-row">
+          <span class="change-name">Custom workflows & rules</span>
+          <span class="before-value"><svg class="icon-x" width="14" height="16"><use href="#icon-x"/></svg> Trial and error</span>
+          <span class="before-value"><svg class="icon-x" width="14" height="16"><use href="#icon-x"/></svg> Not included</span>
+          <span class="before-value">At premium rates</span>
+          <span class="after-value">✓ Included</span>
+        </div>
+        <div class="results-table-row">
+          <span class="change-name">AI automation</span>
+          <span class="before-value"><svg class="icon-x" width="14" height="16"><use href="#icon-x"/></svg></span>
+          <span class="before-value"><svg class="icon-x" width="14" height="16"><use href="#icon-x"/></svg></span>
+          <span class="before-value">Limited</span>
+          <span class="after-value">✓ Built-in</span>
+        </div>
+        <div class="results-table-row">
+          <span class="change-name">Firm-specific training</span>
+          <span class="before-value"><svg class="icon-x" width="14" height="16"><use href="#icon-x"/></svg> Generic webinars</span>
+          <span class="before-value">Basic onboarding</span>
+          <span class="before-value">Often extra cost</span>
+          <span class="after-value">✓ Included</span>
+        </div>
+        <div class="results-table-row">
+          <span class="change-name">Ongoing optimization</span>
+          <span class="before-value"><svg class="icon-x" width="14" height="16"><use href="#icon-x"/></svg></span>
+          <span class="before-value"><svg class="icon-x" width="14" height="16"><use href="#icon-x"/></svg></span>
+          <span class="before-value">Usually extra</span>
+          <span class="after-value">✓ Optional, monthly</span>
+        </div>
+        <div class="results-table-row">
+          <span class="change-name">Data security</span>
+          <span class="before-value">Your responsibility</span>
+          <span class="before-value">Filevine handles</span>
+          <span class="before-value">Varies</span>
+          <span class="after-value">Dedicated env, AES-256</span>
+        </div>
+        <div class="results-table-row">
+          <span class="change-name">Upfront cost</span>
+          <span class="before-value">Free (your time)</span>
+          <span class="before-value">In license</span>
+          <span class="before-value">$10K—$50K+</span>
+          <span class="after-value">$0</span>
+        </div>
+        <div class="results-table-row">
+          <span class="change-name">Time to live</span>
+          <span class="before-value">3—6 months</span>
+          <span class="before-value">1—3 months</span>
+          <span class="before-value">3—6 months</span>
+          <span class="after-value">2—3 weeks</span>
+        </div>
+      </div>
+
+      <div class="results-scrollbar">
+        <div class="results-scrollbar-thumb"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ========== CTA SECTION ========== -->
+<section class="cta-section" id="contact">
+    <div class="cta-card">
+      <video class="cta-background-video" autoplay loop muted playsinline>
+        <source src="./assets/videos/cta-video.mp4" type="video/mp4">
+      </video>
+      <div class="cta-video-overlay"></div>
+      <div class="cta-content">
+        <h2 class="cta-title">Your Firm Deserves<br>Software That Works.</h2>
+        <p class="cta-subtitle">30 minutes. No cost. No pressure.</p>
+       <div class="cta-button-container">
+        <a href="consultation.html" class="cta-action-button" id="startButton">
+          <span class="button-text">Book Your Free Consultation</span>
+        </a>
+      </div>
+        <p class="cta-footnote">We'll confirm fit on the call. No pressure. No contracts.</p>
+      </div>
+    </div>
+</section>
+
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand-section">
+        <a href="index.html" class="footer-logo">
+          <img src="./assets/images/footer-logo.svg" alt="AlphaVenture" />
+        </a>
+        <p class="footer-tagline">We configure, optimize, and automate Filevine, Clio, and other legal platforms. No upfront cost. Live in 2–3 weeks.</p>
+        <div class="footer-social">
+          <a href="https://twitter.com/alphaventure_av" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+          </a>
+          <a href="https://linkedin.com/company/alphaventure" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-nav-section">
+        <div class="footer-nav-group">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="consultation.html">Free Consultation</a></li>
+            <li><a href="#approach">Workflow Audit</a></li>
+            <li><a href="#work">Implementation</a></li>
+            <li><a href="#clients">Customizer</a></li>
+            <li><a href="#contact">Ai Automation</a></li>
+            <li><a href="#contact">Integrations</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-group">
+          <h4>Platforms</h4>
+          <ul>
+            <li><a href="filevine.html">Filevine</a></li>
+            <li><a href="Clio.html">Clio</a></li>
+            <li><a href="index.html#platforms">Docketwise (soon) </a></li>
+            <li><a href="index.html#platforms">MyCase (soon)</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-group">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#strategy">About</a></li>
+            <li><a href="#development">Team</a></li>
+            <li><a href="#design">Case Studies</a></li>
+            <li><a href="#design">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 AlphaVenture. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-service.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- ========== SCRIPTS ========== -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="script.js?v7"></script>
+
+</body>
+</html>

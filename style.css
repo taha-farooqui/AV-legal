@@ -72,6 +72,7 @@
   --text-gray: #858585;
   --accent-orange: #f06730;
   --tag-bg: #3D3D3D;
+  --text-description: #292929;
   --max-width: 100%;
   --max-width-tablet-portrait: 100%;
   --max-width-tablet: 992px;
@@ -718,7 +719,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 .implementation-grid .stat-content { align-items: flex-start; }
 .implementation-grid .stat-value { font-size: var(--alpha-heading-h3); }
 .implementation-title { font-size: var(--alpha-heading-h1); font-weight: var(--font-weight-medium); color: var(--bg-color); margin: 0; }
-.implementation-subtitle { font-size: var(--alpha-body-medium); color: var(--text-gray); margin: 0; }
+.implementation-subtitle { font-size: var(--alpha-body-medium); color: var(--text-description); margin: 0; }
 
 .implementation-grid {
   display: grid;
@@ -932,7 +933,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 
 .how-it-works-header { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 .how-it-works-title { font-size: var(--alpha-heading-h1); font-weight: var(--font-weight-medium); color: #000; }
-.how-it-works-subtitle { font-size: var(--alpha-body-medium); color: #666; margin: 0; }
+.how-it-works-subtitle { font-size: var(--alpha-body-medium); color: var(--text-description); margin: 0; }
 
 .steps-container { display: flex; flex-direction: column; gap: 80px; }
 
@@ -979,7 +980,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 
 .results-header { text-align: center; display: flex; flex-direction: column; gap: 16px; }
 .results-title { font-size: var(--alpha-heading-h1); font-weight: var(--font-weight-medium); color: var(--bg-color); margin: 0; }
-.results-subtitle { font-size: var(--alpha-body-medium); color: var(--text-gray); margin: 0; }
+.results-subtitle { font-size: var(--alpha-body-medium); color: var(--text-description); margin: 0; }
 
 .results-table {
   display: flex;
@@ -1010,6 +1011,24 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 }
 .results-scrollbar-thumb:active { cursor: grabbing; }
 
+.results-category {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  font-size: var(--alpha-body-large);
+  font-weight: var(--font-weight-medium);
+  color: var(--bg-color);
+  margin: 0 0 40px 0;
+}
+.results-category-bar {
+  width: 8px;
+  height: 40px;
+  background: var(--accent-orange);
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+.results-category-spaced { margin-top: 80px; }
+
 .results-table-header { display: grid; grid-template-columns: 1.5fr 1fr 1fr; padding: 16px 0; border-bottom: 2px solid var(--accent-orange); }
 .results-table-header span { font-size: var(--alpha-body-xs); font-weight: var(--font-weight-bold); color: var(--text-gray); letter-spacing: 0.5px; }
 .results-table-header span:last-child { padding-left: 40px; }
@@ -1026,6 +1045,16 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .results-table-row{
     padding: 24px 0;
   }
+  .results-category{
+    margin-bottom: 30px;
+  }
+  .results-category-spaced{
+    margin-top: 60px;
+  }
+  .results-category-bar{
+    height: 30px;
+    width: 6px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1033,7 +1062,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
     padding: 16px 0;
   }
   .results-table { overflow-x: scroll; }
-  .results-table-header, .results-table-row { min-width: 780px; }
+  .results-table-header, .results-table-row { min-width: 830px; }
   .results-scrollbar {
     display: block;
     width: 100%;
@@ -1044,9 +1073,13 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
     cursor: pointer;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
+  .results-category-spaced{
+    margin-top: 50px;
+  }
 }
 
 @media (max-width: 480px) {
+    .results-table-header, .results-table-row { min-width: 780px; }
   .results-section .container { gap: 51px; }
 }
 
@@ -1385,7 +1418,6 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .footer-nav-group h4 { margin-bottom: 20px; }
   .footer-legal { flex-direction: column; gap: 12px; }
 }
-
 
 /* ========================================
    SECTION PADDINGS — consistent spacing

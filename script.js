@@ -23,8 +23,8 @@ const navLinks = document.querySelectorAll('nav > a, nav .nav-dropdown > .nav-dr
 const sections = document.querySelectorAll('section[id]')
 
 const sectionNavMap = {
-  hero: 'contact',
-  clients: 'contact',
+  hero: 'hero',
+  clients: 'hero',
   contact: '',
 }
 

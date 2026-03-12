@@ -941,7 +941,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 .step-item.reverse > * { direction: ltr; }
 
 .step-content { display: flex; flex-direction: column; gap: 16px; }
-.step-title { font-size: var(--alpha-heading-h3); font-weight: var(--font-weight-medium); color: #000; margin: 0; }
+.step-title { font-size: var(--alpha-heading-h2); font-weight: var(--font-weight-medium); color: #000; margin: 0; }
 .step-description { font-size: var(--alpha-body-medium); color: var(--text-gray); font-weight: var(--font-weight-regular); line-height: 1.6; margin: 0; max-width: 436px; }
 .step-badge { display: inline-block; background: #d1d1d1; color: var(--tag-bg); font-size: var(--alpha-body-small); font-weight: var(--font-weight-regular); padding: 10px 24px; border-radius: 100px; width: fit-content; margin-top: 24px; }
 
@@ -1482,7 +1482,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .testimonials-section      { padding: 100px 48px; }
   .how-it-works-section      { padding: 100px 48px; }
   .results-section           { padding: 100px 48px; }
-  .cta-section               { padding: 100px 20px; }
+  .cta-section               { padding: 100px 20px !important; }
   .platforms-section         { padding: 100px 48px; }
   .no-savings-section        { padding: 0 48px 100px; }
   .footer                    { padding: 60px 48px 40px; }
@@ -1499,7 +1499,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .testimonials-section      { padding: 80px 28px; }
   .how-it-works-section      { padding: 80px 28px; }
   .results-section           { padding: 80px 28px; }
-  .cta-section               { padding: 80px 20px; }
+  .cta-section               { padding: 80px 20px !important; }
   .platforms-section         { padding: 80px 28px; }
   .no-savings-section        { padding: 0 28px 80px; }
   .footer                    { padding: 50px 28px 40px; }
@@ -1516,7 +1516,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .testimonials-section      { padding: 60px 20px; }
   .how-it-works-section      { padding: 60px 20px; }
   .results-section           { padding: 60px 20px; }
-  .cta-section               { padding: 60px 20px; }
+  .cta-section               { padding: 60px 20px !important; }
   .platforms-section         { padding: 60px 20px; }
   .no-savings-section        { padding: 0 20px 60px; }
   .footer                    { padding: 40px 20px 30px; }

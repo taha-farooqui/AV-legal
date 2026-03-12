@@ -15,19 +15,25 @@
     <link rel="preload" as="image" href="./assets/images/clio/tabbed-section-Clio5.png">
 
     <style>
+    body{
+        background-color: unset !important;
+      }
+      .hero{
+        background-color: var(--bg-color);
+      }
         .hero-description{
             max-width: 826px;
         }
         .trusted-filevine{
   font-size: var(--alpha-heading-h1);
-  max-width: 762px;
   margin: 0 auto;
-  line-height: 83px;
 }
 .filevine-impact-grid{
   margin-top: 0 !important;
 }
-
+.implementation-grid .stat-value{
+  font-size: var(--alpha-heading-h4);
+}
         .implementation-grid .impact-stat-box{
             gap: 40px;
         }
@@ -85,6 +91,16 @@
         .cta-section{
             background-color: #f2f2f2;
             padding: 0 32px 32px;
+        }
+         .cta-section{
+            background-color: #f2f2f2 !important;
+            /* padding: 0 32px 32px; */
+        }
+        .clio-cta{
+          padding: 0 32px 32px;
+        }
+        .step-description{
+          max-width: 470px;
         }
     </style>
 </head>
@@ -511,7 +527,7 @@
 
 
 <!-- ========== CTA SECTION ========== -->
-<section class="cta-section" id="contact">
+<section class="cta-section clio-cta" id="contact">
     <div class="cta-card">
       <video class="cta-background-video" autoplay loop muted playsinline>
         <source src="./assets/videos/cta-video.mp4" type="video/mp4">

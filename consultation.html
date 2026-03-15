@@ -73,20 +73,23 @@
       <p class="consultation-subtitle">60 seconds. Six questions.<br>So the call is specific to your workflows.</p>
     </div>
 
-    <form class="consultation-form" action="#" method="POST">
+    <form class="consultation-form" action="#" method="POST" novalidate>
       <div class="form-group">
         <label class="form-label">What is your name?</label>
-        <input type="text" class="form-input" placeholder="Full name" required>
+        <input type="text" class="form-input" id="field-name" placeholder="Full name">
+        <span class="form-error" id="error-name"></span>
       </div>
 
       <div class="form-group">
         <label class="form-label">What is your email address?</label>
-        <input type="email" class="form-input" placeholder="Email address" required>
+        <input type="email" class="form-input" id="field-email" placeholder="Email address">
+        <span class="form-error" id="error-email"></span>
       </div>
 
       <div class="form-group">
         <label class="form-label">What is your Firm's name?</label>
-        <input type="text" class="form-input" placeholder="Firm name" required>
+        <input type="text" class="form-input" id="field-firm" placeholder="Firm name">
+        <span class="form-error" id="error-firm"></span>
       </div>
 
       <div class="form-row">
@@ -111,6 +114,7 @@
               <div class="custom-scrollbar-track"><div class="custom-scrollbar-thumb"></div></div>
             </div>
           </div>
+          <span class="form-error" id="error-attorneys"></span>
         </div>
         <div class="form-group">
           <label class="form-label">Practice Area</label>
@@ -135,6 +139,7 @@
               <div class="custom-scrollbar-track"><div class="custom-scrollbar-thumb"></div></div>
             </div>
           </div>
+          <span class="form-error" id="error-practice"></span>
         </div>
       </div>
 
@@ -162,14 +167,18 @@
             <span class="chip-label">Other</span>
           </label>
         </div>
+        <span class="form-error" id="error-platform"></span>
       </div>
 
       <div class="form-group">
         <label class="form-label">Biggest pain point?</label>
-        <textarea class="form-textarea" placeholder="The more context, the better. What's the actual problem? What have you tried? What needs to change?" rows="5"></textarea>
+        <textarea class="form-textarea" id="field-pain" placeholder="The more context, the better. What's the actual problem? What have you tried? What needs to change?" rows="5"></textarea>
+        <span class="form-error" id="error-pain"></span>
       </div>
 
-      <button type="submit" class="consultation-submit">
+      <div class="form-status" id="form-status"></div>
+
+      <button type="submit" class="consultation-submit" id="submit-btn">
         Start the conversation
         <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M28.2661 0.732503C27.9519 0.418225 27.5596 0.193373 27.1297 0.0811012C26.6997 -0.0311704 26.2476 -0.0268033 25.8198 0.0937527L25.7923 0.102503L1.80359 7.375C1.31707 7.51611 0.884902 7.8017 0.564319 8.19392C0.243736 8.58614 0.0498683 9.0665 0.00839456 9.57137C-0.0330792 10.0762 0.0797978 10.5818 0.332075 11.0211C0.584352 11.4604 0.964125 11.8126 1.42109 12.0313L11.8736 17.125L16.9623 27.5813C17.163 28.008 17.4814 28.3686 17.8799 28.6206C18.2785 28.8725 18.7408 29.0055 19.2123 29.0038C19.2836 29.0038 19.3561 29.0038 19.4286 28.995C19.9348 28.956 20.4168 28.7625 20.8094 28.4405C21.202 28.1186 21.4862 27.6838 21.6236 27.195L28.8961 3.20625C28.8997 3.19734 28.9027 3.18814 28.9048 3.17875C29.0254 2.75103 29.0298 2.2989 28.9175 1.86893C28.8052 1.43896 28.5804 1.04668 28.2661 0.732503ZM19.1123 25.1338L14.8161 16.3038L20.5661 10.56C20.7056 10.4205 20.8163 10.2548 20.8918 10.0725C20.9673 9.89022 21.0062 9.69483 21.0062 9.4975C21.0062 9.30018 20.9673 9.10479 20.8918 8.92248C20.8163 8.74018 20.7056 8.57453 20.5661 8.435C20.4266 8.29547 20.2609 8.18479 20.0786 8.10928C19.8963 8.03377 19.7009 7.9949 19.5036 7.9949C19.3063 7.9949 19.1109 8.03377 18.9286 8.10928C18.7463 8.18479 18.5806 8.29547 18.4411 8.435L12.6911 14.185L3.86484 9.88625L25.7486 3.25L19.1123 25.1338Z" fill="currentColor"/>
@@ -337,6 +346,161 @@ document.querySelectorAll('.custom-select').forEach(select => {
 document.addEventListener('click', () => {
   document.querySelectorAll('.custom-select.open').forEach(s => s.classList.remove('open'));
 });
+
+// ========== FORM VALIDATION ==========
+;(function () {
+  const form = document.querySelector('.consultation-form')
+  if (!form) return
+
+  const fields = {
+    name: { el: document.getElementById('field-name'), error: document.getElementById('error-name'), msg: 'Please enter your name' },
+    email: { el: document.getElementById('field-email'), error: document.getElementById('error-email'), msg: 'Please enter a valid email address' },
+    firm: { el: document.getElementById('field-firm'), error: document.getElementById('error-firm'), msg: 'Please enter your firm name' },
+    attorneys: { el: document.querySelector('input[name="attorneys"]'), error: document.getElementById('error-attorneys'), msg: 'Please select number of attorneys' },
+    practice: { el: document.querySelector('input[name="practice-area"]'), error: document.getElementById('error-practice'), msg: 'Please select a practice area' },
+    platform: { error: document.getElementById('error-platform'), msg: 'Please select at least one platform' },
+    pain: { el: document.getElementById('field-pain'), error: document.getElementById('error-pain'), msg: 'Please describe your biggest pain point' },
+  }
+
+  const statusEl = document.getElementById('form-status')
+  const submitBtn = document.getElementById('submit-btn')
+
+  function clearErrors() {
+    Object.values(fields).forEach(f => {
+      if (f.error) { f.error.textContent = ''; f.error.classList.remove('visible') }
+      if (f.el) f.el.closest('.form-group').classList.remove('has-error')
+    })
+    // platform chips group
+    const platformGroup = document.getElementById('error-platform')
+    if (platformGroup) platformGroup.closest('.form-group').classList.remove('has-error')
+    statusEl.className = 'form-status'
+    statusEl.textContent = ''
+  }
+
+  function showError(field, msg) {
+    const f = fields[field]
+    if (f.error) { f.error.textContent = msg || f.msg; f.error.classList.add('visible') }
+    const group = f.el ? f.el.closest('.form-group') : f.error.closest('.form-group')
+    if (group) group.classList.add('has-error')
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+
+  // Clear individual field errors on input
+  ['name', 'email', 'firm', 'pain'].forEach(key => {
+    if (fields[key].el) {
+      fields[key].el.addEventListener('input', () => {
+        fields[key].error.textContent = ''
+        fields[key].error.classList.remove('visible')
+        fields[key].el.closest('.form-group').classList.remove('has-error')
+      })
+    }
+  })
+
+  // Clear select errors on selection
+  document.querySelectorAll('.custom-select-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const select = opt.closest('.custom-select')
+      const name = select.dataset.name
+      const key = name === 'attorneys' ? 'attorneys' : 'practice'
+      fields[key].error.textContent = ''
+      fields[key].error.classList.remove('visible')
+      fields[key].error.closest('.form-group').classList.remove('has-error')
+    })
+  })
+
+  // Clear platform error on chip click
+  document.querySelectorAll('.chip input').forEach(input => {
+    input.addEventListener('change', () => {
+      fields.platform.error.textContent = ''
+      fields.platform.error.classList.remove('visible')
+      fields.platform.error.closest('.form-group').classList.remove('has-error')
+    })
+  })
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault()
+    clearErrors()
+
+    let hasError = false
+    let firstErrorEl = null
+
+    // Name
+    if (!fields.name.el.value.trim()) {
+      showError('name'); hasError = true
+      if (!firstErrorEl) firstErrorEl = fields.name.el
+    }
+
+    // Email
+    if (!fields.email.el.value.trim()) {
+      showError('email', 'Please enter your email address'); hasError = true
+      if (!firstErrorEl) firstErrorEl = fields.email.el
+    } else if (!isValidEmail(fields.email.el.value.trim())) {
+      showError('email', 'Please enter a valid email address'); hasError = true
+      if (!firstErrorEl) firstErrorEl = fields.email.el
+    }
+
+    // Firm
+    if (!fields.firm.el.value.trim()) {
+      showError('firm'); hasError = true
+      if (!firstErrorEl) firstErrorEl = fields.firm.el
+    }
+
+    // Attorneys
+    if (!fields.attorneys.el.value) {
+      showError('attorneys'); hasError = true
+      if (!firstErrorEl) firstErrorEl = fields.attorneys.error
+    }
+
+    // Practice area
+    if (!fields.practice.el.value) {
+      showError('practice'); hasError = true
+      if (!firstErrorEl) firstErrorEl = fields.practice.error
+    }
+
+    // Platform
+    const platforms = document.querySelectorAll('.chip input:checked')
+    if (platforms.length === 0) {
+      showError('platform'); hasError = true
+      if (!firstErrorEl) firstErrorEl = fields.platform.error
+    }
+
+    // Pain point
+    if (!fields.pain.el.value.trim()) {
+      showError('pain'); hasError = true
+      if (!firstErrorEl) firstErrorEl = fields.pain.el
+    }
+
+    if (hasError) {
+      if (firstErrorEl) firstErrorEl.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      return
+    }
+
+    // Simulate submission
+    submitBtn.disabled = true
+    submitBtn.style.opacity = '0.6'
+    submitBtn.innerHTML = 'Submitting...'
+
+    setTimeout(() => {
+      statusEl.className = 'form-status success'
+      statusEl.textContent = 'Thank you! Your consultation request has been submitted. We\'ll get back to you within 24 hours.'
+      form.reset()
+      // Reset custom selects
+      document.querySelectorAll('.custom-select-value').forEach(v => {
+        v.textContent = 'Please select'
+        v.setAttribute('data-placeholder', 'true')
+      })
+      document.querySelectorAll('input[type="hidden"]').forEach(h => h.value = '')
+      document.querySelectorAll('.custom-select-option.selected').forEach(o => o.classList.remove('selected'))
+      submitBtn.disabled = false
+      submitBtn.style.opacity = '1'
+      submitBtn.innerHTML = 'Start the conversation <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28.2661 0.732503C27.9519 0.418225 27.5596 0.193373 27.1297 0.0811012C26.6997 -0.0311704 26.2476 -0.0268033 25.8198 0.0937527L25.7923 0.102503L1.80359 7.375C1.31707 7.51611 0.884902 7.8017 0.564319 8.19392C0.243736 8.58614 0.0498683 9.0665 0.00839456 9.57137C-0.0330792 10.0762 0.0797978 10.5818 0.332075 11.0211C0.584352 11.4604 0.964125 11.8126 1.42109 12.0313L11.8736 17.125L16.9623 27.5813C17.163 28.008 17.4814 28.3686 17.8799 28.6206C18.2785 28.8725 18.7408 29.0055 19.2123 29.0038C19.2836 29.0038 19.3561 29.0038 19.4286 28.995C19.9348 28.956 20.4168 28.7625 20.8094 28.4405C21.202 28.1186 21.4862 27.6838 21.6236 27.195L28.8961 3.20625C28.8997 3.19734 28.9027 3.18814 28.9048 3.17875C29.0254 2.75103 29.0298 2.2989 28.9175 1.86893C28.8052 1.43896 28.5804 1.04668 28.2661 0.732503ZM19.1123 25.1338L14.8161 16.3038L20.5661 10.56C20.7056 10.4205 20.8163 10.2548 20.8918 10.0725C20.9673 9.89022 21.0062 9.69483 21.0062 9.4975C21.0062 9.30018 20.9673 9.10479 20.8918 8.92248C20.8163 8.74018 20.7056 8.57453 20.5661 8.435C20.4266 8.29547 20.2609 8.18479 20.0786 8.10928C19.8963 8.03377 19.7009 7.9949 19.5036 7.9949C19.3063 7.9949 19.1109 8.03377 18.9286 8.10928C18.7463 8.18479 18.5806 8.29547 18.4411 8.435L12.6911 14.185L3.86484 9.88625L25.7486 3.25L19.1123 25.1338Z" fill="currentColor"/></svg>'
+      statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }, 1500)
+  })
+})()
 </script>
 </body>
 </html>

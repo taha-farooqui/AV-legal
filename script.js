@@ -220,57 +220,60 @@ const testimonialsSwiper = new Swiper('.testimonials-swiper', {
 
 // ========== RESULTS TABLE CUSTOM SCROLLBAR ==========
 ;(function () {
-  const table = document.querySelector('.results-table')
-  const track = document.querySelector('.results-scrollbar')
-  const thumb = document.querySelector('.results-scrollbar-thumb')
-  if (!table || !track || !thumb) return
+  document.querySelectorAll('.results-table').forEach(function (table) {
+    var track = table.nextElementSibling
+    while (track && !track.classList.contains('results-scrollbar')) track = track.nextElementSibling
+    if (!track) return
+    var thumb = track.querySelector('.results-scrollbar-thumb')
+    if (!thumb) return
 
-  function updateThumb() {
-    const ratio = table.clientWidth / table.scrollWidth
-    const thumbWidth = Math.max(ratio * track.clientWidth, 40)
-    const maxScroll = table.scrollWidth - table.clientWidth
-    const maxThumbLeft = track.clientWidth - thumbWidth
-    const thumbLeft = maxScroll > 0 ? (table.scrollLeft / maxScroll) * maxThumbLeft : 0
-    thumb.style.width = thumbWidth + 'px'
-    thumb.style.left = thumbLeft + 'px'
-  }
+    function updateThumb() {
+      var ratio = table.clientWidth / table.scrollWidth
+      var thumbWidth = Math.max(ratio * track.clientWidth, 40)
+      var maxScroll = table.scrollWidth - table.clientWidth
+      var maxThumbLeft = track.clientWidth - thumbWidth
+      var thumbLeft = maxScroll > 0 ? (table.scrollLeft / maxScroll) * maxThumbLeft : 0
+      thumb.style.width = thumbWidth + 'px'
+      thumb.style.left = thumbLeft + 'px'
+    }
 
-  table.addEventListener('scroll', updateThumb)
-  window.addEventListener('resize', updateThumb)
-  updateThumb()
+    table.addEventListener('scroll', updateThumb)
+    window.addEventListener('resize', updateThumb)
+    updateThumb()
 
-  let isDragging = false
-  let startX = 0
-  let startScrollLeft = 0
+    var isDragging = false
+    var startX = 0
+    var startScrollLeft = 0
 
-  thumb.addEventListener('pointerdown', function (e) {
-    isDragging = true
-    startX = e.clientX
-    startScrollLeft = table.scrollLeft
-    thumb.setPointerCapture(e.pointerId)
-    e.preventDefault()
-  })
+    thumb.addEventListener('pointerdown', function (e) {
+      isDragging = true
+      startX = e.clientX
+      startScrollLeft = table.scrollLeft
+      thumb.setPointerCapture(e.pointerId)
+      e.preventDefault()
+    })
 
-  thumb.addEventListener('pointermove', function (e) {
-    if (!isDragging) return
-    const dx = e.clientX - startX
-    const thumbWidth = thumb.offsetWidth
-    const maxThumbLeft = track.clientWidth - thumbWidth
-    const maxScroll = table.scrollWidth - table.clientWidth
-    table.scrollLeft = startScrollLeft + (dx / maxThumbLeft) * maxScroll
-  })
+    thumb.addEventListener('pointermove', function (e) {
+      if (!isDragging) return
+      var dx = e.clientX - startX
+      var tw = thumb.offsetWidth
+      var maxThumbLeft = track.clientWidth - tw
+      var maxScroll = table.scrollWidth - table.clientWidth
+      table.scrollLeft = startScrollLeft + (dx / maxThumbLeft) * maxScroll
+    })
 
-  thumb.addEventListener('pointerup', function () { isDragging = false })
-  thumb.addEventListener('pointercancel', function () { isDragging = false })
+    thumb.addEventListener('pointerup', function () { isDragging = false })
+    thumb.addEventListener('pointercancel', function () { isDragging = false })
 
-  track.addEventListener('click', function (e) {
-    if (e.target === thumb) return
-    const rect = track.getBoundingClientRect()
-    const clickX = e.clientX - rect.left
-    const thumbWidth = thumb.offsetWidth
-    const maxThumbLeft = track.clientWidth - thumbWidth
-    const maxScroll = table.scrollWidth - table.clientWidth
-    table.scrollLeft = ((clickX - thumbWidth / 2) / maxThumbLeft) * maxScroll
+    track.addEventListener('click', function (e) {
+      if (e.target === thumb) return
+      var rect = track.getBoundingClientRect()
+      var clickX = e.clientX - rect.left
+      var tw = thumb.offsetWidth
+      var maxThumbLeft = track.clientWidth - tw
+      var maxScroll = table.scrollWidth - table.clientWidth
+      table.scrollLeft = ((clickX - tw / 2) / maxThumbLeft) * maxScroll
+    })
   })
 })()
 

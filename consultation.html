@@ -385,7 +385,7 @@ document.addEventListener('click', () => {
   }
 
   function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)
   }
 
   // Clear individual field errors on input

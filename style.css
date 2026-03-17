@@ -596,6 +596,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .hero { padding: 160px 40px 30px; gap: 40px; justify-content: center; }
   .hero-content { gap: 20px; }
   .hero-image { margin: 0; max-width: unset; width: unset; }
+  .hero-description{padding: 0 20px;}
   .hero-description br { display: none; }
 }
 

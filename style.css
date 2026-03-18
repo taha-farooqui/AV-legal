@@ -596,7 +596,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .hero { padding: 160px 40px 30px; gap: 40px; justify-content: center; }
   .hero-content { gap: 20px; }
   .hero-image { margin: 0; max-width: unset; width: unset; }
-  .hero-description{padding: 0 20px;}
+  .hero-description{padding: 0 30px;}
   .hero-description br { display: none; }
 }
 
@@ -608,7 +608,8 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   .hero { padding: 120px 20px 30px; gap: 40px; justify-content: center; }
   .hero-content { gap: 18px; }
   .h0 br { display: none; }
-  .hero-description br { display: none; }
+  .hero-description br { display: none;}
+  .hero-description{padding: 0;}
   .hero-buttons { flex-direction: column; align-items: center; gap: 12px; }
   .btn-primary { width: 100%; justify-content: center; }
   .hero-buttons .btn-secondary { width: 100%; justify-content: center; }
@@ -688,7 +689,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 .stat-value { color: var(--bg-color); font-size: var(--alpha-heading-h1); font-weight: var(--font-weight-medium); line-height: 1.1; margin: 0; }
 .stat-text { color: var(--bg-color); font-size: var(--alpha-body-medium); font-weight: var(--font-weight-regular); line-height: 1.4; margin: 0; }
 
-@media (min-width: 1920) {
+@media (min-width: 1920px) {
   .stat-text{
     max-width: 305px;
   }

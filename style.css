@@ -1177,7 +1177,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 
 .platforms-title { font-size: var(--alpha-heading-h2); font-weight: var(--font-weight-medium); color: var(--text-white); text-align: center; margin: 0; }
 
-.platforms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; width: 100%; }
+.platforms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
 
 .platform-card {
   background: #111111;

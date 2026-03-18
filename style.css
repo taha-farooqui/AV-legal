@@ -1177,7 +1177,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 
 .platforms-title { font-size: var(--alpha-heading-h2); font-weight: var(--font-weight-medium); color: var(--text-white); text-align: center; margin: 0; }
 
-.platforms-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: 100%; }
+.platforms-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; width: 100%; }
 
 .platform-card {
   background: #111111;
@@ -1194,7 +1194,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
 
 .platform-logo { width: 100%; display: flex; align-items: center; justify-content: center; }
 .platform-logo img { height: 48px; width: auto; object-fit: contain; }
-.platform-link { font-size: var(--alpha-body-small); font-weight: var(--font-weight-bold); color: var(--text-white); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s ease; padding: 10px 0; }
+.platform-link { font-size: var(--alpha-body-small); font-weight: var(--font-weight-bold); color: var(--text-white); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s ease; padding: 0; }
 .platform-link:hover { color: var(--accent-orange); }
 .platform-coming-soon { font-size: var(--alpha-body-small); font-weight: var(--font-weight-regular); color: #888888; background: #242424; padding: 10px 24px; border-radius: 100px; }
 .platforms-footnote { font-size: var(--alpha-body-small); color: var(--text-gray); text-align: center; margin: 0; }

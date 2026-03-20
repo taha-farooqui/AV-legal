@@ -179,14 +179,19 @@
       <div class="form-status" id="form-status"></div>
 
       <button type="submit" class="consultation-submit" id="submit-btn">
-        Start the conversation
-        <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M28.2661 0.732503C27.9519 0.418225 27.5596 0.193373 27.1297 0.0811012C26.6997 -0.0311704 26.2476 -0.0268033 25.8198 0.0937527L25.7923 0.102503L1.80359 7.375C1.31707 7.51611 0.884902 7.8017 0.564319 8.19392C0.243736 8.58614 0.0498683 9.0665 0.00839456 9.57137C-0.0330792 10.0762 0.0797978 10.5818 0.332075 11.0211C0.584352 11.4604 0.964125 11.8126 1.42109 12.0313L11.8736 17.125L16.9623 27.5813C17.163 28.008 17.4814 28.3686 17.8799 28.6206C18.2785 28.8725 18.7408 29.0055 19.2123 29.0038C19.2836 29.0038 19.3561 29.0038 19.4286 28.995C19.9348 28.956 20.4168 28.7625 20.8094 28.4405C21.202 28.1186 21.4862 27.6838 21.6236 27.195L28.8961 3.20625C28.8997 3.19734 28.9027 3.18814 28.9048 3.17875C29.0254 2.75103 29.0298 2.2989 28.9175 1.86893C28.8052 1.43896 28.5804 1.04668 28.2661 0.732503ZM19.1123 25.1338L14.8161 16.3038L20.5661 10.56C20.7056 10.4205 20.8163 10.2548 20.8918 10.0725C20.9673 9.89022 21.0062 9.69483 21.0062 9.4975C21.0062 9.30018 20.9673 9.10479 20.8918 8.92248C20.8163 8.74018 20.7056 8.57453 20.5661 8.435C20.4266 8.29547 20.2609 8.18479 20.0786 8.10928C19.8963 8.03377 19.7009 7.9949 19.5036 7.9949C19.3063 7.9949 19.1109 8.03377 18.9286 8.10928C18.7463 8.18479 18.5806 8.29547 18.4411 8.435L12.6911 14.185L3.86484 9.88625L25.7486 3.25L19.1123 25.1338Z" fill="currentColor"/>
+        Pick a time
+        <svg width="25" height="21" viewBox="0 0 25 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24.5613 11.5664L15.5613 20.5664C15.2795 20.8481 14.8973 21.0065 14.4988 21.0065C14.1002 21.0065 13.718 20.8481 13.4363 20.5664C13.1545 20.2846 12.9961 19.9024 12.9961 19.5039C12.9961 19.1053 13.1545 18.7231 13.4363 18.4414L19.875 12.0051H1.5C1.10218 12.0051 0.720644 11.8471 0.43934 11.5658C0.158035 11.2845 0 10.9029 0 10.5051C0 10.1073 0.158035 9.72575 0.43934 9.44444C0.720644 9.16314 1.10218 9.0051 1.5 9.0051H19.875L13.4387 2.5651C13.157 2.28331 12.9986 1.90112 12.9986 1.5026C12.9986 1.10409 13.157 0.721894 13.4387 0.440102C13.7205 0.158309 14.1027 4.19903e-09 14.5012 0C14.8998 -4.19904e-09 15.282 0.158309 15.5637 0.440102L24.5637 9.4401C24.7036 9.57964 24.8145 9.74544 24.8901 9.92797C24.9657 10.1105 25.0045 10.3062 25.0043 10.5037C25.0041 10.7013 24.9648 10.8969 24.8888 11.0792C24.8127 11.2616 24.7014 11.4271 24.5613 11.5664Z" fill="white"/>
         </svg>
       </button>
     </form>
+
+    <div id="calendly-container" style="display:none; opacity:0; transition: opacity 0.5s ease;">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/hammad-alphaventure/30min?hide_gdpr_banner=1" style="min-width:320px;height:950px;margin-top:-66px;margin-bottom:-30px;"></div>
+    </div>
   </div>
 </section>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
 <!-- ========== FOOTER ========== -->
 <footer class="footer">
@@ -198,6 +203,9 @@
         </a>
         <p class="footer-tagline">We configure, optimize, and automate Filevine, Clio, and other legal platforms. No upfront cost. Live in 2–3 weeks.</p>
         <div class="footer-social">
+          <a href="https://www.instagram.com/alphaventure_av/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
           <a href="https://twitter.com/alphaventure_av" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter/X">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
           </a>
@@ -478,27 +486,19 @@ document.addEventListener('click', () => {
       return
     }
 
-    // Simulate submission
-    submitBtn.disabled = true
-    submitBtn.style.opacity = '0.6'
-    submitBtn.innerHTML = 'Submitting...'
+    // Fade out form, fade in Calendly
+    const calendlyContainer = document.getElementById('calendly-container')
+    form.style.transition = 'opacity 0.5s ease'
+    form.style.opacity = '0'
 
     setTimeout(() => {
-      statusEl.className = 'form-status success'
-      statusEl.textContent = 'Thank you! Your consultation request has been submitted. We\'ll get back to you within 24 hours.'
-      form.reset()
-      // Reset custom selects
-      document.querySelectorAll('.custom-select-value').forEach(v => {
-        v.textContent = 'Please select'
-        v.setAttribute('data-placeholder', 'true')
+      form.style.display = 'none'
+      calendlyContainer.style.display = 'block'
+      requestAnimationFrame(() => {
+        calendlyContainer.style.opacity = '1'
       })
-      document.querySelectorAll('input[type="hidden"]').forEach(h => h.value = '')
-      document.querySelectorAll('.custom-select-option.selected').forEach(o => o.classList.remove('selected'))
-      submitBtn.disabled = false
-      submitBtn.style.opacity = '1'
-      submitBtn.innerHTML = 'Start the conversation <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M28.2661 0.732503C27.9519 0.418225 27.5596 0.193373 27.1297 0.0811012C26.6997 -0.0311704 26.2476 -0.0268033 25.8198 0.0937527L25.7923 0.102503L1.80359 7.375C1.31707 7.51611 0.884902 7.8017 0.564319 8.19392C0.243736 8.58614 0.0498683 9.0665 0.00839456 9.57137C-0.0330792 10.0762 0.0797978 10.5818 0.332075 11.0211C0.584352 11.4604 0.964125 11.8126 1.42109 12.0313L11.8736 17.125L16.9623 27.5813C17.163 28.008 17.4814 28.3686 17.8799 28.6206C18.2785 28.8725 18.7408 29.0055 19.2123 29.0038C19.2836 29.0038 19.3561 29.0038 19.4286 28.995C19.9348 28.956 20.4168 28.7625 20.8094 28.4405C21.202 28.1186 21.4862 27.6838 21.6236 27.195L28.8961 3.20625C28.8997 3.19734 28.9027 3.18814 28.9048 3.17875C29.0254 2.75103 29.0298 2.2989 28.9175 1.86893C28.8052 1.43896 28.5804 1.04668 28.2661 0.732503ZM19.1123 25.1338L14.8161 16.3038L20.5661 10.56C20.7056 10.4205 20.8163 10.2548 20.8918 10.0725C20.9673 9.89022 21.0062 9.69483 21.0062 9.4975C21.0062 9.30018 20.9673 9.10479 20.8918 8.92248C20.8163 8.74018 20.7056 8.57453 20.5661 8.435C20.4266 8.29547 20.2609 8.18479 20.0786 8.10928C19.8963 8.03377 19.7009 7.9949 19.5036 7.9949C19.3063 7.9949 19.1109 8.03377 18.9286 8.10928C18.7463 8.18479 18.5806 8.29547 18.4411 8.435L12.6911 14.185L3.86484 9.88625L25.7486 3.25L19.1123 25.1338Z" fill="currentColor"/></svg>'
-      statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    }, 1500)
+      calendlyContainer.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 500)
   })
 })()
 </script>

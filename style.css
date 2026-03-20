@@ -1142,7 +1142,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   transition: all 0.3s ease;
   margin-top: 40px;
 }
-.cta-action-button::before { content: ''; position: absolute; left: 40px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border-radius: 50%; background: #000; filter: drop-shadow(0 0 10px #F06831); transition: all 0.6s ease-in-out; z-index: 0; }
+.cta-action-button::before { content: ''; position: absolute; left: 40px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border-radius: 50%; background: #000;  transition: all 0.6s ease-in-out; z-index: 0; }
 .cta-action-button:hover::before { transform: translateY(-50%) scale(80); left: 0; }
 .cta-action-button .button-text { position: relative; z-index: 10; margin-left: 36px; transition: all 0.5s ease; }
 .cta-action-button:hover .button-text { margin-left: 0; color: var(--text-white); }
@@ -1383,7 +1383,7 @@ div.mobile-nav a.cta-button:hover { background: #f06730 !important; color: #ffff
   gap: 40px;
 }
 
-.footer-brand-section { flex: 1; max-width: 400px; }
+.footer-brand-section { flex: 1; max-width: 458px; }
 .footer-logo img { height: 70px; width: auto; }
 .footer-tagline { font-size: var(--alpha-body-medium); font-weight: var(--font-weight-regular); color: #FFFFFF; line-height: 1.6; margin-top: 25px; }
 .footer-social { display: flex; gap: 12px; margin-top: 50px; }
